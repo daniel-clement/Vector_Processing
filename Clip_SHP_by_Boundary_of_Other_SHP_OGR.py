@@ -2,7 +2,7 @@
 """This script clips a shapefile to the boundaries of an input shapefile using OGR2OGR"""
 
 # do imports
-from os import system, path
+import os
 
 # set parameters
 ############################################################################################
@@ -17,8 +17,8 @@ output_folder = r"C:\Outputs"
 ############################################################################################
 
 # create output shapefile name and path
-input_name = path.basename(shp_to_clip)
-output_shp = path.join(output_folder, input_name.replace(".shp", "_Clipped.shp"))
+input_name = os.path.basename(shp_to_clip)
+output_shp = os.path.join(output_folder, input_name.replace(".shp", "_Clipped.shp"))
 
 # create command
 command = "ogr2ogr -clipsrc {} {} {}".format(clipping_shp, output_shp, shp_to_clip)
@@ -26,6 +26,6 @@ command = "ogr2ogr -clipsrc {} {} {}".format(clipping_shp, output_shp, shp_to_cl
 print("\nClipping feature...")
 
 # run command
-system(command)
+os.system(command)
 
 print("\nFeature clipped successfully!")
